@@ -1,0 +1,374 @@
+[
+    {
+        "label": "runpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "runpy",
+        "description": "runpy",
+        "detail": "runpy",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "site",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "psycopg2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "psycopg2",
+        "description": "psycopg2",
+        "detail": "psycopg2",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "httpx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "httpx",
+        "description": "httpx",
+        "detail": "httpx",
+        "documentation": {}
+    },
+    {
+        "label": "sleep",
+        "importPath": "time",
+        "description": "time",
+        "isExtraImport": true,
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "BeautifulSoup",
+        "importPath": "bs4",
+        "description": "bs4",
+        "isExtraImport": true,
+        "detail": "bs4",
+        "documentation": {}
+    },
+    {
+        "label": "bin_dir",
+        "kind": 5,
+        "importPath": "moksh-backend..venv.Scripts.activate_this",
+        "description": "moksh-backend..venv.Scripts.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"Scripts\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"moksh-backend\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))",
+        "detail": "moksh-backend..venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "base",
+        "kind": 5,
+        "importPath": "moksh-backend..venv.Scripts.activate_this",
+        "description": "moksh-backend..venv.Scripts.activate_this",
+        "peekOfCode": "base = bin_dir[: -len(\"Scripts\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"moksh-backend\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)",
+        "detail": "moksh-backend..venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": "moksh-backend..venv.Scripts.activate_this",
+        "description": "moksh-backend..venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"moksh-backend\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix",
+        "detail": "moksh-backend..venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": "moksh-backend..venv.Scripts.activate_this",
+        "description": "moksh-backend..venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"moksh-backend\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "moksh-backend..venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV_PROMPT\"]",
+        "kind": 5,
+        "importPath": "moksh-backend..venv.Scripts.activate_this",
+        "description": "moksh-backend..venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV_PROMPT\"] = \"moksh-backend\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "moksh-backend..venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": "moksh-backend..venv.Scripts.activate_this",
+        "description": "moksh-backend..venv.Scripts.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "moksh-backend..venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": "moksh-backend..venv.Scripts.activate_this",
+        "description": "moksh-backend..venv.Scripts.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "moksh-backend..venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": "moksh-backend..venv.Scripts.activate_this",
+        "description": "moksh-backend..venv.Scripts.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "moksh-backend..venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": "moksh-backend..venv.Scripts.activate_this",
+        "description": "moksh-backend..venv.Scripts.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": "moksh-backend..venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_db",
+        "description": "moksh-backend.model.populate_db",
+        "peekOfCode": "DATABASE = 'database2.db'\nconn = sqlite3.connect(DATABASE)\nconn.row_factory = sqlite3.Row\ncount = 1\n# with open('datasets/registered_data.csv', 'r') as file:\n#     for line in file:\n#         # if len(line.strip().split(',')) != 9:\n#         #     continue\n#         title, registration_number, registration_date, language, periodicity, publisher, owner, publication_state, publication_district = line.strip().split(',')\n#         # print(title, registration_number, registration_date, language, ",
+        "detail": "moksh-backend.model.populate_db",
+        "documentation": {}
+    },
+    {
+        "label": "conn",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_db",
+        "description": "moksh-backend.model.populate_db",
+        "peekOfCode": "conn = sqlite3.connect(DATABASE)\nconn.row_factory = sqlite3.Row\ncount = 1\n# with open('datasets/registered_data.csv', 'r') as file:\n#     for line in file:\n#         # if len(line.strip().split(',')) != 9:\n#         #     continue\n#         title, registration_number, registration_date, language, periodicity, publisher, owner, publication_state, publication_district = line.strip().split(',')\n#         # print(title, registration_number, registration_date, language, \n#         # periodicity, publisher, owner, publication_state, publication_district)",
+        "detail": "moksh-backend.model.populate_db",
+        "documentation": {}
+    },
+    {
+        "label": "conn.row_factory",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_db",
+        "description": "moksh-backend.model.populate_db",
+        "peekOfCode": "conn.row_factory = sqlite3.Row\ncount = 1\n# with open('datasets/registered_data.csv', 'r') as file:\n#     for line in file:\n#         # if len(line.strip().split(',')) != 9:\n#         #     continue\n#         title, registration_number, registration_date, language, periodicity, publisher, owner, publication_state, publication_district = line.strip().split(',')\n#         # print(title, registration_number, registration_date, language, \n#         # periodicity, publisher, owner, publication_state, publication_district)\n#         conn.execute('INSERT INTO prgi_registered_titles (Title, Registration_Number, Registration_Date, Language, Periodicity, Publisher, Owner, Publication_State, Publication_District) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', ",
+        "detail": "moksh-backend.model.populate_db",
+        "documentation": {}
+    },
+    {
+        "label": "count",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_db",
+        "description": "moksh-backend.model.populate_db",
+        "peekOfCode": "count = 1\n# with open('datasets/registered_data.csv', 'r') as file:\n#     for line in file:\n#         # if len(line.strip().split(',')) != 9:\n#         #     continue\n#         title, registration_number, registration_date, language, periodicity, publisher, owner, publication_state, publication_district = line.strip().split(',')\n#         # print(title, registration_number, registration_date, language, \n#         # periodicity, publisher, owner, publication_state, publication_district)\n#         conn.execute('INSERT INTO prgi_registered_titles (Title, Registration_Number, Registration_Date, Language, Periodicity, Publisher, Owner, Publication_State, Publication_District) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', \n#                         (title, registration_number, registration_date, language, periodicity, publisher, owner, publication_state, publication_district))",
+        "detail": "moksh-backend.model.populate_db",
+        "documentation": {}
+    },
+    {
+        "label": "conn_psql",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_psql",
+        "description": "moksh-backend.model.populate_psql",
+        "peekOfCode": "conn_psql = psycopg2.connect(\n    host=\"ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech\",\n    database=\"neondb\",\n    user=\"neondb_owner\",\n    password=\"npg_wEMTpa4n6xKr\"\n)\n# conn_sqlite = sqlite3.connect('database2.db')\n# conn_sqlite.row_factory = sqlite3.Row\ncur_psql = conn_psql.cursor()\n# cur_psql2 = conn_psql.cursor()",
+        "detail": "moksh-backend.model.populate_psql",
+        "documentation": {}
+    },
+    {
+        "label": "cur_psql",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_psql",
+        "description": "moksh-backend.model.populate_psql",
+        "peekOfCode": "cur_psql = conn_psql.cursor()\n# cur_psql2 = conn_psql.cursor()\n# cur_sqlite = conn_sqlite.cursor()\ncur_psql.execute(\"SELECT * FROM prgi_semantic_titles\")\n# cur_psql2.execute(\"SELECT * FROM moksh_cancelled_titles\")\nregistered_titles_rows = cur_psql.fetchall()\n# cancelled_titles_rows = cur_psql2.fetchall()\nprint(\"Registered Titles:\", len(registered_titles_rows))\nfor row in registered_titles_rows:\n    print(row)",
+        "detail": "moksh-backend.model.populate_psql",
+        "documentation": {}
+    },
+    {
+        "label": "registered_titles_rows",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_psql",
+        "description": "moksh-backend.model.populate_psql",
+        "peekOfCode": "registered_titles_rows = cur_psql.fetchall()\n# cancelled_titles_rows = cur_psql2.fetchall()\nprint(\"Registered Titles:\", len(registered_titles_rows))\nfor row in registered_titles_rows:\n    print(row)\nprint(registered_titles_rows)\n# cur_sqlite.execute(\"CREATE TABLE IF NOT EXISTS prgi_registered_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Registration_Number TEXT NOT NULL,Registration_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, Language TEXT NOT NULL, Periodicity TEXT NOT NULL , Publisher TEXT NOT NULL, Owner TEXT NOT NULL, Publication_State TEXT NOT NULL, Publication_District TEXT NOT NULL)\")\n# cur_sqlite.executemany(\"INSERT INTO prgi_registered_titles (Title, Registration_Number, Language, Periodicity, Publisher, Owner, Publication_State, Publication_District) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)\", registered_titles_rows)\n# cur_sqlite.execute(\"CREATE TABLE IF NOT EXISTS prgi_cancelled_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Registration_Number TEXT NOT NULL,Language TEXT NOT NULL, Periodicity TEXT NOT NULL,State TEXT NOT NULL, District TEXT NOT NULL, Owner TEXT NOT NULL,Publisher TEXT NOT NULL)\")\n# cur_sqlite.executemany(\"INSERT INTO prgi_cancelled_titles (Title, Registration_Number, Language, Periodicity, State, District, Owner, Publisher) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)\", cancelled_titles_rows)",
+        "detail": "moksh-backend.model.populate_psql",
+        "documentation": {}
+    },
+    {
+        "label": "get_db_connection",
+        "kind": 2,
+        "importPath": "moksh-backend.model_ctrl",
+        "description": "moksh-backend.model_ctrl",
+        "peekOfCode": "def get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\n@app.route('/init_db', methods=['GET'])\ndef init_db():\n    conn = get_db_connection()\n    # Registered titles dataset\n    conn.execute('CREATE TABLE IF NOT EXISTS prgi_registered_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Registration_Number TEXT NOT NULL,Registration_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, Language TEXT NOT NULL, Periodicity TEXT NOT NULL , Publisher TEXT NOT NULL, Owner TEXT NOT NULL, Publication_State TEXT NOT NULL, Publication_District TEXT NOT NULL)')\n    conn.commit()",
+        "detail": "moksh-backend.model_ctrl",
+        "documentation": {}
+    },
+    {
+        "label": "init_db",
+        "kind": 2,
+        "importPath": "moksh-backend.model_ctrl",
+        "description": "moksh-backend.model_ctrl",
+        "peekOfCode": "def init_db():\n    conn = get_db_connection()\n    # Registered titles dataset\n    conn.execute('CREATE TABLE IF NOT EXISTS prgi_registered_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Registration_Number TEXT NOT NULL,Registration_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, Language TEXT NOT NULL, Periodicity TEXT NOT NULL , Publisher TEXT NOT NULL, Owner TEXT NOT NULL, Publication_State TEXT NOT NULL, Publication_District TEXT NOT NULL)')\n    conn.commit()\n    # Cancelled titles dataset\n    conn.execute('CREATE TABLE IF NOT EXISTS prgi_cancelled_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Registration_Number TEXT NOT NULL, Language TEXT NOT NULL, Periodicity TEXT NOT NULL,State TEXT NOT NULL, District TEXT NOT NULL, Owner TEXT NOT NULL,Publisher TEXT NOT NULL)')\n    conn.commit()\n    # Defunt titles dataset\n    conn.execute('CREATE TABLE IF NOT EXISTS prgi_defunct_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Registration_Number TEXT NOT NULL, Owner TEXT NOT NULL, Publisher TEXT NOT NULL, Language TEXT NOT NULL, Periodicity TEXT NOT NULL,State TEXT NOT NULL, District TEXT NOT NULL)')",
+        "detail": "moksh-backend.model_ctrl",
+        "documentation": {}
+    },
+    {
+        "label": "add_user",
+        "kind": 2,
+        "importPath": "moksh-backend.model_ctrl",
+        "description": "moksh-backend.model_ctrl",
+        "peekOfCode": "def add_user():\n    if request.method == 'POST':\n        data = request.get_json()\n        name = data.get('name')\n        email = data.get('email')\n    else:\n        name = request.args.get('name')\n        email = request.args.get('email')\n    if not name or not email:\n        return jsonify({\"error\": \"Name and email are required\"}), 400",
+        "detail": "moksh-backend.model_ctrl",
+        "documentation": {}
+    },
+    {
+        "label": "list_users",
+        "kind": 2,
+        "importPath": "moksh-backend.model_ctrl",
+        "description": "moksh-backend.model_ctrl",
+        "peekOfCode": "def list_users():\n    conn = get_db_connection()\n    users = conn.execute('SELECT * FROM users').fetchall()\n    conn.close()\n    # user_list = []\n    # for user in users:\n    #     user_list.append({\"id\": user['id'], \"name\": user['name'], \"email\": user['email']})\n    return jsonify([dict(user) for user in users])\nif __name__ == '__main__':\n    app.run(debug=True, port=5000)",
+        "detail": "moksh-backend.model_ctrl",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "moksh-backend.model_ctrl",
+        "description": "moksh-backend.model_ctrl",
+        "peekOfCode": "app = Flask(__name__)\nDATABASE = 'model/database2.db'\ndef get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\n@app.route('/init_db', methods=['GET'])\ndef init_db():\n    conn = get_db_connection()\n    # Registered titles dataset",
+        "detail": "moksh-backend.model_ctrl",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE",
+        "kind": 5,
+        "importPath": "moksh-backend.model_ctrl",
+        "description": "moksh-backend.model_ctrl",
+        "peekOfCode": "DATABASE = 'model/database2.db'\ndef get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\n@app.route('/init_db', methods=['GET'])\ndef init_db():\n    conn = get_db_connection()\n    # Registered titles dataset\n    conn.execute('CREATE TABLE IF NOT EXISTS prgi_registered_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Registration_Number TEXT NOT NULL,Registration_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, Language TEXT NOT NULL, Periodicity TEXT NOT NULL , Publisher TEXT NOT NULL, Owner TEXT NOT NULL, Publication_State TEXT NOT NULL, Publication_District TEXT NOT NULL)')",
+        "detail": "moksh-backend.model_ctrl",
+        "documentation": {}
+    },
+    {
+        "label": "getData",
+        "kind": 2,
+        "importPath": "moksh-backend.scrapper",
+        "description": "moksh-backend.scrapper",
+        "peekOfCode": "def getData(url):\n    with httpx.Client(verify=False) as client:\n        response = client.get(url, headers=headers, timeout=10)\n        return response\ndef parseData(response):\n    soup = BeautifulSoup(response.content, 'html.parser')\n    table_body = soup.find('tbody', {'role': 'rowgroup'})\n    data = []\n    for tr in table_body.find_all('tr'):\n        row_data = []",
+        "detail": "moksh-backend.scrapper",
+        "documentation": {}
+    },
+    {
+        "label": "parseData",
+        "kind": 2,
+        "importPath": "moksh-backend.scrapper",
+        "description": "moksh-backend.scrapper",
+        "peekOfCode": "def parseData(response):\n    soup = BeautifulSoup(response.content, 'html.parser')\n    table_body = soup.find('tbody', {'role': 'rowgroup'})\n    data = []\n    for tr in table_body.find_all('tr'):\n        row_data = []\n        for td in tr.find_all('td'):\n            row_data.append(td.text.strip().replace(',',''))\n            # data.append(row_data)\n        # print(row_data[1:-1])",
+        "detail": "moksh-backend.scrapper",
+        "documentation": {}
+    },
+    {
+        "label": "saveData",
+        "kind": 2,
+        "importPath": "moksh-backend.scrapper",
+        "description": "moksh-backend.scrapper",
+        "peekOfCode": "def saveData(data):\n    with open('data.csv', 'a', encoding='utf-8', newline='') as f:\n        for row in data:\n            f.write(','.join(row) + '\\n')\nfor page in range(0, 89):  \n    paginated_url = f\"{cancelled_url}{page}\"\n    sleep(1)  \n    response = getData(paginated_url)\n    if response.status_code == 200:\n        data = parseData(response)",
+        "detail": "moksh-backend.scrapper",
+        "documentation": {}
+    },
+    {
+        "label": "registered_url",
+        "kind": 5,
+        "importPath": "moksh-backend.scrapper",
+        "description": "moksh-backend.scrapper",
+        "peekOfCode": "registered_url = \"https://prgi.gov.in/registration-title-details?title_name=&registration_number=&owner_name=&pub_state_name=&pub_dist_name=&languages=&items_per_page=1000&page=\"\ncancelled_url = \"https://prgi.gov.in/our-services/cancelled-data-for-website?title_name=&registration_no=&items_per_page=1000&page=\"\ndefunct_url = \"https://prgi.gov.in/our-services/defunct-title?title_name=&registration_no=&owner_name=&publication_state=&publication_district=&publication_language=&items_per_page=1000&page=\"\nheaders = {\n    \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36\"\n}\ndef getData(url):\n    with httpx.Client(verify=False) as client:\n        response = client.get(url, headers=headers, timeout=10)\n        return response",
+        "detail": "moksh-backend.scrapper",
+        "documentation": {}
+    },
+    {
+        "label": "cancelled_url",
+        "kind": 5,
+        "importPath": "moksh-backend.scrapper",
+        "description": "moksh-backend.scrapper",
+        "peekOfCode": "cancelled_url = \"https://prgi.gov.in/our-services/cancelled-data-for-website?title_name=&registration_no=&items_per_page=1000&page=\"\ndefunct_url = \"https://prgi.gov.in/our-services/defunct-title?title_name=&registration_no=&owner_name=&publication_state=&publication_district=&publication_language=&items_per_page=1000&page=\"\nheaders = {\n    \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36\"\n}\ndef getData(url):\n    with httpx.Client(verify=False) as client:\n        response = client.get(url, headers=headers, timeout=10)\n        return response\ndef parseData(response):",
+        "detail": "moksh-backend.scrapper",
+        "documentation": {}
+    },
+    {
+        "label": "defunct_url",
+        "kind": 5,
+        "importPath": "moksh-backend.scrapper",
+        "description": "moksh-backend.scrapper",
+        "peekOfCode": "defunct_url = \"https://prgi.gov.in/our-services/defunct-title?title_name=&registration_no=&owner_name=&publication_state=&publication_district=&publication_language=&items_per_page=1000&page=\"\nheaders = {\n    \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36\"\n}\ndef getData(url):\n    with httpx.Client(verify=False) as client:\n        response = client.get(url, headers=headers, timeout=10)\n        return response\ndef parseData(response):\n    soup = BeautifulSoup(response.content, 'html.parser')",
+        "detail": "moksh-backend.scrapper",
+        "documentation": {}
+    },
+    {
+        "label": "headers",
+        "kind": 5,
+        "importPath": "moksh-backend.scrapper",
+        "description": "moksh-backend.scrapper",
+        "peekOfCode": "headers = {\n    \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36\"\n}\ndef getData(url):\n    with httpx.Client(verify=False) as client:\n        response = client.get(url, headers=headers, timeout=10)\n        return response\ndef parseData(response):\n    soup = BeautifulSoup(response.content, 'html.parser')\n    table_body = soup.find('tbody', {'role': 'rowgroup'})",
+        "detail": "moksh-backend.scrapper",
+        "documentation": {}
+    }
+]
