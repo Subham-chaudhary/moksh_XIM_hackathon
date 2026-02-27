@@ -1,0 +1,278 @@
+/* Prevent horizontal scroll */
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* Slider container */
+.slider-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+}
+
+/* Images */
+.slider-img {
+  width: 520px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+/* Smooth infinite scroll */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+/* Button hover pop effect */
+.pop-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.pop-hover:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: #e2e6ea !important;
+}
+
+/* Navbar hover effect */
+.nav-pop {
+  transition: all 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.nav-pop:hover {
+  background-color: #dee2e6;
+  transform: translateY(-1px) scale(1.05);
+}
+
+/* Professional font for brand */
+.brand-font {
+  font-family: "Poppins", "Segoe UI", Roboto, Arial, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Keyframes */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+/* Separate top toolbar */
+.top-toolbar {
+  background-color: #385d81ff; /* light grey */
+  border-bottom: 1px solid #888b8dff;
+}
+
+/* Navbar hover pop + highlight */
+.nav-pop {
+  transition: all 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.nav-pop:hover,
+.nav-pop:focus {
+  background-color: #616364ff;
+  transform: translateY(-1px) scale(1.05);
+}
+
+/* Professional font for brand name */
+.brand-font {
+  font-family: "Poppins", "Segoe UI", Roboto, Arial, sans-serif;
+  letter-spacing: 0.4px;
+  font-size:1.5 rem;
+}
+/* Keep custom button color on hover (prevent Bootstrap from turning them white) */
+
+
+/* Pop animation only (no color change) */
+.pop-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pop-hover:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+/* Keep button color solid */
+/* Professional textured button background */
+
+/* Pop hover effect */
+.pop-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pop-hover:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.25);
+}
+
+/* Separator between buttons */
+.button-divider {
+  border-right: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Rounded edges */
+.button-left-rounded {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.button-right-rounded {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+/* PRGI-style textured blue background for buttons */
+.prgi-bg {
+  background:
+    linear-gradient(135deg, rgba(32, 88, 140, 0.95), rgba(24, 63, 105, 0.95)),
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06), transparent 45%),
+    repeating-linear-gradient(
+      60deg,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 2px,
+      transparent 2px,
+      transparent 10px
+    );
+  color: #ffffff !important;
+  position: relative;
+  overflow: hidden;
+}
+/* Subtle geometric overlay (hex/lines feel) */
+.prgi-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(60deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(-60deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Keep same look on hover */
+.prgi-bg:hover,
+.prgi-bg:focus,
+.prgi-bg:active {
+  color: #ffffff !important;
+}
+
+/* Ensure text sits above overlay */
+.prgi-bg > * {
+  position: relative;
+  z-index: 1;
+}
+/* Brand font for "Moksha Publications" */
+.brand-font {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+/* Optional: subtle emphasis */
+.brand-font span {
+  font-weight: 600;
+  opacity: 0.95;
+}
+.dropdown-animate {
+  animation: fadeSlide 0.25s ease;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.footer-link {
+  transition: 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #e4e8ecff;
+  text-decoration: underline;
+}
+/* Footer Background */
+.custom-footer {
+  background-color: #385d81;   /* same light grey tone */
+  border-top: 2px solid #d1d5db;
+}
+
+/* Footer Links */
+.footer-link {
+  cursor: pointer;
+  color: #ffffffff;
+  transition: 0.2s ease;
+}
+
+/* Hover Highlight */
+.footer-link:hover {
+  color: #f2f5f7ff;
+  text-decoration: underline;
+}
+
+/* Copyright Text */
+.footer-copy {
+  color: #e7ebefff;
+}
+/* White background with blue outline */
+.policy-bar-outline {
+  background-color: #ffffff;
+  border: 2px solid #385d81;
+  border-radius: 8px;
+}
+
+/* Heading style */
+.policy-heading {
+  color: #385d81;
+}
+
+/* Scroll container */
+.policy-scroll {
+  width: max-content;
+  animation: scrollPolicies 25s linear infinite;
+}
+
+/* Policy text */
+.policy-item {
+  color: #385d81;
+  font-weight: 500;
+  margin-right: 60px;
+  white-space: nowrap;
+}
+
+/* Infinite animation */
+@keyframes scrollPolicies {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.about-divider {
+  height: 1px;
+  background-color: #385d81;
+  margin: 0;
+}
+.about-dropdown .dropdown-item:hover {
+  background-color: #e6edf5;
+  color: #385d81;
+}
