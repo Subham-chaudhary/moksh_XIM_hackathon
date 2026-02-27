@@ -2,7 +2,9 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FileText, User, MapPin } from "lucide-react";
 import Footer from "./extra/footer";
+
 export default function RegisterTitle() {
+
   const [formData, setFormData] = useState({
     title: "",
     language: "",
@@ -13,6 +15,10 @@ export default function RegisterTitle() {
     district: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [apiResult, setApiResult] = useState(null);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -20,95 +26,61 @@ export default function RegisterTitle() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    setLoading(true);
+    setMessage("");
+    setApiResult(null);
+
+    try {
+      const res = await fetch("http://127.0.0.1:5000/registertitle", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setMessage("✅ Registration successful");
+        setFormData({
+          title: "",
+          language: "",
+          periodicity: "",
+          owner: "",
+          publisher: "",
+          state: "",
+          district: "",
+        });
+      } else {
+        setMessage(data?.error || "❌ Failed");
+        setApiResult(data?.results || null);
+      }
+    } catch (err) {
+      setMessage("❌ Server error");
+    }
+
+    setLoading(false);
   };
 
   return (
     <div className="bg-light min-vh-100">
       <div className="animated-bg"></div>
-      {/* INTERNAL CSS */}
-      <style>{`
-  .prgi-header {
-    background: linear-gradient(to right, #385d81, #2f6fb3);
-    color: white;
-    padding: 45px 30px;
-    position: relative;
-    z-index: 2;
-  }
 
-  .form-card {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(6px);
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-    margin-top: -40px;
-    position: relative;
-    z-index: 2;
-    transition: all 0.3s ease;
-  }
-
-  .form-card:hover {
-    transform: translateY(-3px);
-  }
-
-  .section-title {
-    color: #385d81;
-    font-weight: 600;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .btn-prgi {
-    background: linear-gradient(to right, #385d81, #174d8a);
-    color: white;
-    border: none;
-    padding: 10px 30px;
-    font-size: 16px;
-    transition: 0.3s;
-  }
-
-  .btn-prgi:hover {
-    background: linear-gradient(to right, #2f6fb3, #123a6b);
-    transform: scale(1.05);
-  }
-
-  /* 🔥 PREMIUM BACKGROUND */
-
-  .animated-bg {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    background: linear-gradient(120deg, #f4f7fb, #e6edf5, #f4f7fb);
-    background-size: 200% 200%;
-    animation: gradientMove 12s ease infinite;
-  }
-
-  /* subtle grid pattern */
-  .animated-bg::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: 
-      linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
-
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-`}</style>
+      {/* LOADING SPINNER */}
+      {loading && (
+        <div
+          className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-25"
+          style={{ zIndex: 9999 }}
+        >
+          <div
+            className="spinner-border text-primary"
+            style={{ width: "4rem", height: "4rem" }}
+          />
+        </div>
+      )}
 
       {/* HEADER */}
       <div className="prgi-header">
@@ -175,15 +147,53 @@ export default function RegisterTitle() {
             </div>
           </div>
 
+          {/* MESSAGE */}
+          {message && (
+            <div className="alert alert-info text-center">
+              {message}
+            </div>
+          )}
+
           {/* SUBMIT */}
           <div className="text-center mt-4">
             <button type="submit" className="btn btn-prgi">
-              Submit Registration
+              Apply Registration
             </button>
           </div>
 
         </form>
+
+        {/* RESULTS SECTION */}
+        {apiResult && (
+          <div className="mt-4">
+            <h5 className="text-danger mb-3">
+              Similar Titles Found
+            </h5>
+
+            {Array.isArray(apiResult.fuzzy) && apiResult.fuzzy.length > 0 && (
+              <ResultBlock title="Fuzzy Matches" data={apiResult.fuzzy} />
+            )}
+
+            {Array.isArray(apiResult.phoneatic) && apiResult.phoneatic.length > 0 && (
+              <PhoneticBlock data={apiResult.phoneatic} />
+            )}
+            {Array.isArray(apiResult.schematic) && apiResult.schematic.length > 0 && (
+              <ResultBlock title="Semantic Matches" data={apiResult.schematic} />
+            )}
+
+            {/* If results object exists but all arrays empty */}
+            {(!apiResult.fuzzy?.length &&
+              !apiResult.phoneatic?.length &&
+              !apiResult.schematic?.length) && (
+                <div className="alert alert-warning">
+                  No similar titles found.
+                </div>
+              )}
+          </div>
+        )}
+
       </div>
+
       <Footer />
     </div>
   );
@@ -202,7 +212,71 @@ function Input({ label, name, value, onChange }) {
         className="form-control"
         required
       />
+    </div>
+  );
+}
 
+/* 🔹 Result Block */
+function ResultBlock({ title, data }) {
+  if (!Array.isArray(data)) return null;
+
+  return (
+    <div className="mb-4">
+      <h6 className="fw-bold text-primary">{title}</h6>
+
+      <table className="table table-sm table-bordered">
+        <thead className="table-light">
+          <tr>
+            <th>Title</th>
+            <th>Reg No</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {data.map((r, i) => (
+            <tr key={i}>
+              <td>{r?.[0] || "-"}</td>
+              <td>{r?.[1] || "-"}</td>
+              <td>{Number(r?.[2] ?? 0).toFixed(3)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function PhoneticBlock({ data }) {
+  if (!Array.isArray(data)) return null;
+
+  return (
+    <div className="mb-4">
+      <h6 className="fw-bold text-primary">Phonetic Matches</h6>
+
+      <table className="table table-sm table-bordered">
+        <thead className="table-light">
+          <tr>
+            <th>Title</th>
+            <th>Requested IPA</th>
+            <th>Candidate IPA</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {data.map((r, i) => (
+            <tr key={i}>
+              <td>{r?.[0] || "-"}</td>
+              <td style={{ fontFamily: "serif" }}>{r?.[1] || "-"}</td>
+              <td style={{ fontFamily: "serif" }}>{r?.[2] || "-"}</td>
+              <td>
+                {Number(r?.[3] ?? 0).toFixed(2)}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

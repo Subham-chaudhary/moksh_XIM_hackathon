@@ -163,6 +163,32 @@
         "documentation": {}
     },
     {
+        "label": "string",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "string",
+        "description": "string",
+        "detail": "string",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "CORS",
+        "importPath": "flask_cors",
+        "description": "flask_cors",
+        "isExtraImport": true,
+        "detail": "flask_cors",
+        "documentation": {}
+    },
+    {
         "label": "phonemize",
         "importPath": "phonemizer",
         "description": "phonemizer",
@@ -496,7 +522,34 @@
         "kind": 2,
         "importPath": "moksh-backend.app",
         "description": "moksh-backend.app",
-        "peekOfCode": "def phoneatic_search(title, titles_list):\n    results = ph.convert_to_ipa(title, titles_list)\n    return results\n# @app.route('/registertitle', methods=['POST'])\n# def register_title():\nif __name__ == '__main__':\n    app.run(debug=True, host='0.0.0.0', port=5000)\n    # print(fuzzy_search(\"child\"))\n    # print(schematic_search(\"Child\"))\n    # print(phonetic)",
+        "peekOfCode": "def phoneatic_search(title, titles_list):\n    results = ph.convert_to_ipa(title, titles_list)\n    return results\ndef evaluate(f_results, sch_results, p_results):\n    F_Threshold = 0.4\n    Sch_Threshold = 0.8\n    P_Threshold = 0.5\n    isTitleAvailable = True\n    if f_results and f_results[0][2] >= F_Threshold:\n        isTitleAvailable = False",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "evaluate",
+        "kind": 2,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "def evaluate(f_results, sch_results, p_results):\n    F_Threshold = 0.4\n    Sch_Threshold = 0.8\n    P_Threshold = 0.5\n    isTitleAvailable = True\n    if f_results and f_results[0][2] >= F_Threshold:\n        isTitleAvailable = False\n    elif sch_results and sch_results[0][2] >= Sch_Threshold:\n        isTitleAvailable = False\n    elif p_results and p_results[0][3] >= P_Threshold:",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "getRandomNum",
+        "kind": 2,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "def getRandomNum():\n    chars = string.ascii_letters + string.digits\n    return ''.join(random.choice(chars) for _ in range(3))\n@app.route('/registertitle', methods=['POST'])\ndef register_title():\n    data = request.get_json()\n    title = data.get(\"title\")\n    language = data.get(\"language\")\n    periodicity = data.get(\"periodicity\")\n    owner = data.get(\"owner\")",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "register_title",
+        "kind": 2,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "def register_title():\n    data = request.get_json()\n    title = data.get(\"title\")\n    language = data.get(\"language\")\n    periodicity = data.get(\"periodicity\")\n    owner = data.get(\"owner\")\n    publisher = data.get(\"publisher\")\n    state = data.get(\"state\")\n    district = data.get(\"district\")\n    if not title or not owner:",
         "detail": "moksh-backend.app",
         "documentation": {}
     },
@@ -505,7 +558,7 @@
         "kind": 5,
         "importPath": "moksh-backend.app",
         "description": "moksh-backend.app",
-        "peekOfCode": "app = Flask(__name__)\nDATABASE = 'model/database2.db'\ndef get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\ndef get_psql_connection():\n    conn = psycopg2.connect(\n        host=os.getenv('host', 'ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech'),\n        database=os.getenv('database', 'neondb'),",
+        "peekOfCode": "app = Flask(__name__)\nCORS(app, resources={r\"/*\": {\"origins\": \"*\"}})\nDATABASE = 'model/database2.db'\ndef get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\ndef get_psql_connection():\n    conn = psycopg2.connect(\n        host=os.getenv('host', 'ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech'),",
         "detail": "moksh-backend.app",
         "documentation": {}
     },
@@ -586,7 +639,7 @@
         "kind": 2,
         "importPath": "moksh-backend.phoneba",
         "description": "moksh-backend.phoneba",
-        "peekOfCode": "def similarity(a, b):\n    return SequenceMatcher(None, a, b).ratio()\ndef convert_to_ipa(title, titles_list, threshold=0.75):\n    main_words = ipa_words(title)\n    matches = []\n    for candidate in titles_list:\n        cand_words = ipa_words(candidate)\n        print(candidate)\n        for m in main_words:\n            print(f\"  Main word: {m}\")",
+        "peekOfCode": "def similarity(a, b):\n    return SequenceMatcher(None, a, b).ratio()\ndef convert_to_ipa(title, titles_list):\n    main_words = ipa_words(title)\n    matches = []\n    for candidate in titles_list:\n        cand_words = ipa_words(candidate)\n        # print(candidate)\n        for m in main_words:\n            # print(f\"  Main word: {m}\")",
         "detail": "moksh-backend.phoneba",
         "documentation": {}
     },
@@ -595,7 +648,7 @@
         "kind": 2,
         "importPath": "moksh-backend.phoneba",
         "description": "moksh-backend.phoneba",
-        "peekOfCode": "def convert_to_ipa(title, titles_list, threshold=0.75):\n    main_words = ipa_words(title)\n    matches = []\n    for candidate in titles_list:\n        cand_words = ipa_words(candidate)\n        print(candidate)\n        for m in main_words:\n            print(f\"  Main word: {m}\")\n            for c in cand_words:\n                score = similarity(m, c)",
+        "peekOfCode": "def convert_to_ipa(title, titles_list):\n    main_words = ipa_words(title)\n    matches = []\n    for candidate in titles_list:\n        cand_words = ipa_words(candidate)\n        # print(candidate)\n        for m in main_words:\n            # print(f\"  Main word: {m}\")\n            for c in cand_words:\n                score = similarity(m, c)",
         "detail": "moksh-backend.phoneba",
         "documentation": {}
     },
@@ -669,15 +722,6 @@
         "description": "moksh-backend.scrapper",
         "peekOfCode": "headers = {\n    \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36\"\n}\ndef getData(url):\n    with httpx.Client(verify=False) as client:\n        response = client.get(url, headers=headers, timeout=10)\n        return response\ndef parseData(response):\n    soup = BeautifulSoup(response.content, 'html.parser')\n    table_body = soup.find('tbody', {'role': 'rowgroup'})",
         "detail": "moksh-backend.scrapper",
-        "documentation": {}
-    },
-    {
-        "label": "main",
-        "kind": 2,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "def main():\n    print(\"Hello from moksh-xim-hackathon2!\")\nif __name__ == \"__main__\":\n    main()",
-        "detail": "main",
         "documentation": {}
     }
 ]

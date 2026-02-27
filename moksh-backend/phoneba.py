@@ -22,21 +22,20 @@ def similarity(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
 
-def convert_to_ipa(title, titles_list, threshold=0.75):
+def convert_to_ipa(title, titles_list):
     main_words = ipa_words(title)
     matches = []
 
     for candidate in titles_list:
         cand_words = ipa_words(candidate)
-        print(candidate)
+        # print(candidate)
 
         for m in main_words:
-            print(f"  Main word: {m}")
+            # print(f"  Main word: {m}")
             for c in cand_words:
                 score = similarity(m, c)
-                if score >= threshold:
-                    matches.append((candidate, m, c, round(score, 2)))
-
+                matches.append((candidate, m, c, round(score, 2)))
+    print(matches)
     return matches
 
 

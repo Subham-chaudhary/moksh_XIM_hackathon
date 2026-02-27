@@ -1,225 +1,147 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "../extra/footer";
-import { useEffect } from "react";
+
 export default function CancelledTitles() {
   const [form, setForm] = useState({
     title: "",
-    regNo: "",
-    records: 10,
+    rnum: "",
+    language: "",
+    page: 1,
+    limit: 10,
   });
-  const [data, setData] = useState([]);
+
+  const [data, setData] = useState({
+    result: [],
+    total_pages: 1,
+    total_rows: 0,
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  // API FETCH
+  const fetchData = () => {
+    setLoading(true);
+
+    const query = new URLSearchParams(form).toString();
+
+    fetch(`http://127.0.0.1:5000/cancelled?${query}`)
+      .then(res => res.json())
+      .then(res => {
+        setData({
+          result: res.result || [],
+          total_pages: res.total_pages || 1,
+          total_rows: res.total_rows || 0,
+        });
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/cancelled?page=1&limit=10")
-      .then(response => response.json())
-      .then(data => setData(data));
-  }, []);
-    console.log(data.entries());
-  // const data = [
-  //   {
-  //     id: 1,
-  //     title: "A I LIONS NEWS",
-  //     regNo: "107593",
-  //     language: "English",
-  //     periodicity: "Monthly",
-  //     state: "Delhi",
-  //     district: "New Delhi",
-  //     owner: "M.G. AGRAWAL",
-  //     publisher: "M.G. AGRAWAL",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "A A E I MAGAZINE",
-  //     regNo: "5062",
-  //     language: "English",
-  //     periodicity: "Monthly",
-  //     state: "West Bengal",
-  //     district: "Kolkata",
-  //     owner: "AUTOMOBILE ASSOCIATION OF BENGAL",
-  //     publisher: "ABANI KANTA BHATTACHARJEE",
-  //   },
-  // ];
+    fetchData();
+  }, [form.page, form.limit]);
+
+  // FORM APPLY BUTTON
+  const applyFilters = () => {
+    setForm(prev => ({ ...prev, page: 1 }));
+    setTimeout(fetchData, 0);
+  };
+
+  // PAGE CHANGE
+  const changePage = (p) => {
+    if (p >= 1 && p <= data.total_pages) {
+      setForm(prev => ({ ...prev, page: p }));
+    }
+  };
 
   return (
     <div className="bg-light min-vh-100">
 
-      {/* 🔥 PREMIUM BACKGROUND */}
-      <div className="animated-bg"></div>
-
-      {/* INTERNAL CSS */}
-      <style>{`
-        .animated-bg {
-          position: fixed;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          z-index: 0;
-          background: linear-gradient(120deg, #f4f7fb, #e6edf5, #f4f7fb);
-          background-size: 200% 200%;
-          animation: gradientMove 12s ease infinite;
-        }
-
-        .animated-bg::after {
-          content: "";
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          background-image: 
-            linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-
-        @keyframes gradientMove {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-
-        .prgi-header {
-          background: linear-gradient(to right, #385d81, #2f6fb3);
-          color: white;
-          padding: 40px 30px;
-          position: relative;
-          z-index: 2;
-        }
-
-        .filter-box {
-          background: rgba(255,255,255,0.9);
-          backdrop-filter: blur(6px);
-          border-radius: 12px;
-          padding: 25px;
-          position: relative;
-          z-index: 2;
-          box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-        }
-
-        .btn-prgi {
-          background: linear-gradient(to right, #385d81, #174d8a);
-          color: white;
-          border: none;
-          transition: 0.3s;
-        }
-
-        .btn-prgi:hover {
-          background: linear-gradient(to right, #2f6fb3, #123a6b);
-          transform: scale(1.05);
-        }
-
-        .table-wrapper {
-          position: relative;
-          z-index: 2;
-        }
-
-        .table-prgi thead {
-          background-color: #385d81;
-          color: white;
-          text-align: center;
-        }
-
-        .table-prgi tbody td {
-          text-align: center;
-          vertical-align: middle;
-        }
-
-        .table-prgi tbody tr:nth-child(even) {
-          background-color: #f8f9fb;
-        }
-
-        .table-prgi tbody tr:hover {
-          background-color: #eef4ff;
-        }
-
-        .search-box {
-          width: 280px;
-        }
-      `}</style>
-
       {/* HEADER */}
-      <div className="prgi-header">
-        <h2 className="fw-bold">Cancelled Titles</h2>
-        <p className="mb-0">Home &gt; Our Services &gt; Cancelled Titles</p>
+      <div className="bg-primary text-white p-4">
+        <h3>Cancelled Titles</h3>
       </div>
 
       {/* FILTER */}
       <div className="container mt-4">
-        <div className="filter-box row g-3 align-items-end">
+        <div className="row g-3">
 
-          <div className="col-md-4">
-            <label className="form-label fw-semibold">Title</label>
+          <div className="col-md-3">
+            <label>Title</label>
             <input
               className="form-control"
-              placeholder="Enter Title Name"
               value={form.title}
-              onChange={(e) =>
+              onChange={e =>
                 setForm({ ...form, title: e.target.value })
               }
             />
           </div>
 
-          <div className="col-md-4">
-            <label className="form-label fw-semibold">Registration Number</label>
+          <div className="col-md-3">
+            <label>Registration No</label>
             <input
               className="form-control"
-              placeholder="Enter Registration Number"
-              value={form.regNo}
-              onChange={(e) =>
-                setForm({ ...form, regNo: e.target.value })
+              value={form.rnum}
+              onChange={e =>
+                setForm({ ...form, rnum: e.target.value })
               }
             />
           </div>
 
           <div className="col-md-3">
-            <label className="form-label fw-semibold">Records</label>
+            <label>Language</label>
             <input
-              type="number"
               className="form-control"
-              value={form.records}
-              onChange={(e) =>
-                setForm({ ...form, records: e.target.value })
+              value={form.language}
+              onChange={e =>
+                setForm({ ...form, language: e.target.value })
               }
             />
           </div>
 
-          <div className="col-md-1">
-            <button className="btn btn-prgi w-100">Apply</button>
+          <div className="col-md-2">
+            <label>Records</label>
+            <select
+              className="form-select"
+              value={form.limit}
+              onChange={e =>
+                setForm({ ...form, limit: Number(e.target.value) })
+              }
+            >
+              {[10, 20, 50, 100].map(n => (
+                <option key={n}>{n}</option>
+              ))}
+            </select>
           </div>
 
+          <div className="col-md-1 d-grid">
+            <button onClick={applyFilters} className="btn btn-primary">
+              Go
+            </button>
+          </div>
         </div>
       </div>
 
       {/* TABLE */}
-      <div className="container mt-4 table-wrapper">
+      <div className="container mt-4">
 
-        {/* Export Buttons */}
-        <div className="mb-3 d-flex gap-2 flex-wrap">
-          {["Copy", "CSV", "Excel", "PDF", "Print"].map((btn) => (
-            <button key={btn} className="btn btn-prgi btn-sm">
-              {btn}
-            </button>
-          ))}
-        </div>
+        <p className="text-muted">
+          Page {form.page} of {data.total_pages} | Total {data.total_rows}
+        </p>
 
-        {/* Global Search */}
-        <div className="d-flex justify-content-end mb-3">
-          <input
-            className="form-control search-box"
-            placeholder="Type to search all records"
-          />
-        </div>
+        <div className="table-responsive">
+          <table className="table table-bordered text-center">
 
-        {/* Table */}
-        <div className="table-responsive shadow rounded">
-          <table className="table table-bordered table-prgi">
-
-            <thead>
+            <thead className="table-dark">
               <tr>
-                <th>Sr. No.</th>
+                <th>ID</th>
                 <th>Title</th>
-                <th>Registration Number</th>
-                <th>Languages</th>
+                <th>Reg No</th>
+                <th>Language</th>
                 <th>Periodicity</th>
                 <th>State</th>
                 <th>District</th>
@@ -229,25 +151,71 @@ export default function CancelledTitles() {
             </thead>
 
             <tbody>
-              {data.map((row) => (
-                <tr key={row.id}>
-                  <td>{row.id}</td>
-                  <td>{row.title}</td>
-                  <td>{row.regNo}</td>
-                  <td>{row.language}</td>
-                  <td>{row.periodicity}</td>
-                  <td>{row.state}</td>
-                  <td>{row.district}</td>
-                  <td>{row.owner}</td>
-                  <td>{row.publisher}</td>
+              {loading ? (
+                <tr>
+                  <td colSpan="9">Loading...</td>
                 </tr>
-              ))}
+              ) : data.result.length > 0 ? (
+                data.result.map(row => (
+                  <tr key={row.id}>
+                    <td>{row.id}</td>
+                    <td>{row.Title}</td>
+                    <td>{row.Registration_Number}</td>
+                    <td>{row.Language}</td>
+                    <td>{row.Periodicity}</td>
+                    <td>{row.State}</td>
+                    <td>{row.District}</td>
+                    <td>{row.Owner}</td>
+                    <td>{row.Publisher}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="9">No results</td>
+                </tr>
+              )}
             </tbody>
-
           </table>
         </div>
 
+        {/* PAGINATION */}
+        <div className="d-flex justify-content-center gap-2 mt-3">
 
+          <button
+            className="btn btn-outline-primary"
+            disabled={form.page === 1}
+            onClick={() => changePage(form.page - 1)}
+          >
+            Prev
+          </button>
+
+          {[...Array(data.total_pages).keys()]
+            .slice(form.page - 1, form.page + 4)
+            .map(i => {
+              const p = i + 1;
+              return (
+                <button
+                  key={p}
+                  className={`btn ${
+                    p === form.page
+                      ? "btn-primary"
+                      : "btn-outline-primary"
+                  }`}
+                  onClick={() => changePage(p)}
+                >
+                  {p}
+                </button>
+              );
+            })}
+
+          <button
+            className="btn btn-outline-primary"
+            disabled={form.page === data.total_pages}
+            onClick={() => changePage(form.page + 1)}
+          >
+            Next
+          </button>
+        </div>
       </div>
 
       <Footer />

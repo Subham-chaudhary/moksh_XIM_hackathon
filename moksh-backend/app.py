@@ -4,10 +4,13 @@ import sqlite3
 import os
 import model.embed_llama as ollama
 import phoneba as ph
+import string
+import random
 
-
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 DATABASE = 'model/database2.db'
 def get_db_connection():
     conn = sqlite3.connect(DATABASE)
@@ -79,12 +82,12 @@ def registered():
 
     cur.close()
     conn.close()
-
+    print(len(result))
     return jsonify({"page": page,
         "limit": limit,
         "total_rows": max_rows,
         "total_pages": max_pages,
-        "data": result})
+        "result": result})
 
 @app.route('/cancelled', methods=['GET'])
 def cancelled():
@@ -139,7 +142,7 @@ def cancelled():
         "limit": limit,
         "total_rows": max_rows,
         "total_pages": max_pages,
-        "data": result})
+        "result": result})
 
 @app.route('/defunct', methods=['GET'])
 def defunct():
@@ -202,7 +205,7 @@ def defunct():
         "limit": limit,
         "total_rows": max_rows,
         "total_pages": max_pages,
-        "data": result})
+        "result": result})
 
 def fuzzy_search(title):
     conn = get_psql_connection()
@@ -234,10 +237,92 @@ def phoneatic_search(title, titles_list):
     return results
     
 
+def evaluate(f_results, sch_results, p_results):
+    F_Threshold = 0.4
+    Sch_Threshold = 0.8
+    P_Threshold = 0.5
 
-# @app.route('/registertitle', methods=['POST'])
-# def register_title():
+    isTitleAvailable = True
+
+    if f_results and f_results[0][2] >= F_Threshold:
+        isTitleAvailable = False
+    elif sch_results and sch_results[0][2] >= Sch_Threshold:
+        isTitleAvailable = False
+    elif p_results and p_results[0][3] >= P_Threshold:
+        isTitleAvailable = False
+
+    return isTitleAvailable
+
+    print("F_results:", f_results)
+    print("Sch_results:", sch_results)
+    print("P_results:", p_results)
+
+
+def getRandomNum():
+    chars = string.ascii_letters + string.digits
+    return ''.join(random.choice(chars) for _ in range(3))
+
+@app.route('/registertitle', methods=['POST'])
+def register_title():
+    data = request.get_json()
+
+    title = data.get("title")
+    language = data.get("language")
+    periodicity = data.get("periodicity")
+    owner = data.get("owner")
+    publisher = data.get("publisher")
+    state = data.get("state")
+    district = data.get("district")
+
+    if not title or not owner:
+        return jsonify({"error": "Missing required fields"}), 400
+
+    fuzzy_results = fuzzy_search(title)
+    schematic_search_results = schematic_search(title)
+    phoneatic_search_results = phoneatic_search(title, [res[0] for res in fuzzy_results])
+
+    isAvailable = evaluate(fuzzy_results, schematic_search_results, phoneatic_search_results)
+
+    if not isAvailable:
+        return jsonify({"error": "Title already exists",
+        "results": {
+            "fuzzy": fuzzy_results,
+            "schematic": schematic_search_results,
+            "phoneatic": phoneatic_search_results,
+            "requested_data": data
+        }}), 409
     
+    lite_sql = get_db_connection()
+    lite_cur = lite_sql.cursor()
+    query = "INSERT INTO prgi_registered_titles (title, registration_number, language, periodicity, publisher, owner, publication_state, publication_district) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+    registration_number = getRandomNum()
+    lite_cur.execute(query, (title, registration_number, language, periodicity, publisher, owner, state, district))
+    
+    
+    conn = get_psql_connection()
+    cur = conn.cursor()
+    query = "INSERT INTO prgi_semantic_titles (title, registration_number,tag, language, periodicity,publisher, owner, publication_state, publication_district, embedding) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    # registration_number = getRandomNum()
+    embedding = ollama.embed(title).get("embeddings")
+    cur.execute(query, (title, registration_number, 'registered',language, periodicity, publisher, owner,state, district, embedding[0]))
+    
+    lite_sql.commit()
+    lite_cur.close()
+    lite_sql.close()
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    return jsonify({
+        "status": "success",
+        "message": "Title registered successfully",
+        "results": {
+            "fuzzy": fuzzy_results,
+            "schematic": schematic_search_results,
+            "phoneatic": phoneatic_search_results,
+            "requested_data": data
+        }
+    }), 200
     
 
 
