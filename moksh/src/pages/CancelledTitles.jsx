@@ -19,7 +19,6 @@ export default function CancelledTitles() {
 
   const [loading, setLoading] = useState(false);
 
-  // API FETCH
   const fetchData = () => {
     setLoading(true);
 
@@ -45,13 +44,11 @@ export default function CancelledTitles() {
     fetchData();
   }, [form.page, form.limit]);
 
-  // FORM APPLY BUTTON
   const applyFilters = () => {
     setForm(prev => ({ ...prev, page: 1 }));
     setTimeout(fetchData, 0);
   };
 
-  // PAGE CHANGE
   const changePage = (p) => {
     if (p >= 1 && p <= data.total_pages) {
       setForm(prev => ({ ...prev, page: p }));
@@ -59,69 +56,88 @@ export default function CancelledTitles() {
   };
 
   return (
-    <div className="bg-light min-vh-100">
+    <div style={{ background: "#eef3f8" }} className="min-vh-100">
 
       {/* HEADER */}
-      <div className="bg-primary text-white p-4">
-        <h3>Cancelled Titles</h3>
+      <div
+        style={{
+          background: "linear-gradient(135deg,#385d81,#1f344a)",
+          color: "white",
+          padding: "20px",
+          textAlign: "center",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+          letterSpacing: "1px"
+        }}
+      >
+        <h3 style={{ margin: 0, fontWeight: 600 }}>CANCELLED TITLES DIRECTORY</h3>
+        <small style={{ opacity: 0.85 }}>Official Registry Records</small>
       </div>
 
-      {/* FILTER */}
+      {/* FILTER PANEL */}
       <div className="container mt-4">
-        <div className="row g-3">
+        <div
+          className="p-3 rounded-4"
+          style={{
+            background: "white",
+            boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
+            border: "1px solid #d9e2ec"
+          }}
+        >
+          <div className="row g-3">
 
-          <div className="col-md-3">
-            <label>Title</label>
-            <input
-              className="form-control"
-              value={form.title}
-              onChange={e =>
-                setForm({ ...form, title: e.target.value })
-              }
-            />
-          </div>
+            <div className="col-md-3">
+              <label className="fw-semibold">Title</label>
+              <input
+                className="form-control"
+                value={form.title}
+                onChange={e => setForm({ ...form, title: e.target.value })}
+              />
+            </div>
 
-          <div className="col-md-3">
-            <label>Registration No</label>
-            <input
-              className="form-control"
-              value={form.rnum}
-              onChange={e =>
-                setForm({ ...form, rnum: e.target.value })
-              }
-            />
-          </div>
+            <div className="col-md-3">
+              <label className="fw-semibold">Registration No</label>
+              <input
+                className="form-control"
+                value={form.rnum}
+                onChange={e => setForm({ ...form, rnum: e.target.value })}
+              />
+            </div>
 
-          <div className="col-md-3">
-            <label>Language</label>
-            <input
-              className="form-control"
-              value={form.language}
-              onChange={e =>
-                setForm({ ...form, language: e.target.value })
-              }
-            />
-          </div>
+            <div className="col-md-3">
+              <label className="fw-semibold">Language</label>
+              <input
+                className="form-control"
+                value={form.language}
+                onChange={e => setForm({ ...form, language: e.target.value })}
+              />
+            </div>
 
-          <div className="col-md-2">
-            <label>Records</label>
-            <select
-              className="form-select"
-              value={form.limit}
-              onChange={e =>
-                setForm({ ...form, limit: Number(e.target.value) })
-              }
-            >
-              {[10, 20, 50, 100].map(n => (
-                <option key={n}>{n}</option>
-              ))}
-            </select>
-          </div>
+            <div className="col-md-2">
+              <label className="fw-semibold">Records</label>
+              <select
+                className="form-select"
+                value={form.limit}
+                onChange={e => setForm({ ...form, limit: Number(e.target.value) })}
+              >
+                {[10, 20, 50, 100].map(n => (
+                  <option key={n}>{n}</option>
+                ))}
+              </select>
+            </div>
 
-          <div className="col-md-1 d-grid">
-            <button onClick={applyFilters} className="btn btn-primary">
-              Go
-            </button>
+            <div className="col-md-1 d-grid">
+              <button
+                onClick={applyFilters}
+                className="btn"
+                style={{
+                  background: "#385d81",
+                  color: "white",
+                  fontWeight: 600
+                }}
+              >
+                Go
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -129,14 +145,19 @@ export default function CancelledTitles() {
       {/* TABLE */}
       <div className="container mt-4">
 
-        <p className="text-muted">
-          Page {form.page} of {data.total_pages} | Total {data.total_rows}
+        <p className="text-muted fw-semibold">
+          Page {form.page} of {data.total_pages} | Total Records: {data.total_rows}
         </p>
 
         <div className="table-responsive">
-          <table className="table table-bordered text-center">
+          <table className="table text-center align-middle" style={{ background: "white" }}>
 
-            <thead className="table-dark">
+            <thead
+              style={{
+                background: "#385d81",
+                color: "white"
+              }}
+            >
               <tr>
                 <th>ID</th>
                 <th>Title</th>
@@ -157,7 +178,7 @@ export default function CancelledTitles() {
                 </tr>
               ) : data.result.length > 0 ? (
                 data.result.map(row => (
-                  <tr key={row.id}>
+                  <tr key={row.id} style={{ borderBottom: "1px solid #e6edf3" }}>
                     <td>{row.id}</td>
                     <td>{row.Title}</td>
                     <td>{row.Registration_Number}</td>
@@ -179,10 +200,10 @@ export default function CancelledTitles() {
         </div>
 
         {/* PAGINATION */}
-        <div className="d-flex justify-content-center gap-2 mt-3">
+        <div className="d-flex justify-content-center gap-2 mt-3 flex-wrap">
 
           <button
-            className="btn btn-outline-primary"
+            className="btn btn-outline-secondary"
             disabled={form.page === 1}
             onClick={() => changePage(form.page - 1)}
           >
@@ -196,11 +217,14 @@ export default function CancelledTitles() {
               return (
                 <button
                   key={p}
-                  className={`btn ${
-                    p === form.page
-                      ? "btn-primary"
-                      : "btn-outline-primary"
-                  }`}
+                  className="btn"
+                  style={{
+                    background: p === form.page ? "#385d81" : "white",
+                    color: p === form.page ? "white" : "#385d81",
+                    border: "1px solid #385d81",
+                    fontWeight: 600,
+                    minWidth: "42px"
+                  }}
                   onClick={() => changePage(p)}
                 >
                   {p}
@@ -209,7 +233,7 @@ export default function CancelledTitles() {
             })}
 
           <button
-            className="btn btn-outline-primary"
+            className="btn btn-outline-secondary"
             disabled={form.page === data.total_pages}
             onClick={() => changePage(form.page + 1)}
           >
