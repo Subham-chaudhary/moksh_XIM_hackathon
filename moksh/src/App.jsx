@@ -1,19 +1,19 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./home";
-import Policy from "./policy";
+import Policy from "./extra/policy";
 import Register from "./Register";
-import Registertitles from "./RegisterdTitle";
-import Connect from "./connect";
-import Cancelled from "./cancelledTitles";
-import Defunct from "./DefunctTitles";
-import AboutOverview from "./WhatWeAre";
-import VisionMission from "./WhatWeDo";
-import OurTeam from "./WhatWeWere";
-import History from "./Events";
-import ContactInfo from "./OrganizationalChart";
-import Period from "./RegistrationPeriod";
-import Regular from "./Regularity";
-import News from "./News";
+import Registertitles from "./pages/RegisterdTitle";
+import Connect from "./extra/connect";
+import Cancelled from "./pages/CancelledTitles";
+import Defunct from "./pages/DefunctTitles";
+import AboutOverview from "./extra/WhatWeAre";
+import VisionMission from "./extra/WhatWeDo";
+import OurTeam from "./extra/WhatWeWere";
+import History from "./extra/Events";
+import ContactInfo from "./extra/OrganizationalChart";
+import Period from "./extra/RegistrationPeriod";
+import Regular from "./extra/Regularity";
+import News from "./extra/News";
 
 export default function App() {
   return (
@@ -24,7 +24,7 @@ export default function App() {
       <Route path="/registertitles" element={<Registertitles />} />
       <Route path="/cancelled" element={<Cancelled />} />
       <Route path="/defunct" element={<Defunct />} />
-       <Route path="/about" element={<AboutOverview />} />
+      <Route path="/about" element={<AboutOverview />} />
       <Route path="/vision" element={<VisionMission />} />
       <Route path="/team" element={<OurTeam />} />
       <Route path="/history" element={<History />} />
@@ -32,7 +32,7 @@ export default function App() {
       <Route path="/period" element={<Period />} />
       <Route path="/regular" element={<Regular />} />
       <Route path="/news" element={<News />} />
-    <Route path="/connect" element={<Connect />} />
+      <Route path="/connect" element={<Connect />} />
     </Routes>
   );
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FileText, User, MapPin } from "lucide-react";
-import Footer from "./footer";
+import Footer from "./extra/footer";
 export default function RegisterTitle() {
   const [formData, setFormData] = useState({
     title: "",
@@ -27,9 +27,9 @@ export default function RegisterTitle() {
 
   return (
     <div className="bg-light min-vh-100">
-     <div className="animated-bg"></div>
+      <div className="animated-bg"></div>
       {/* INTERNAL CSS */}
-     <style>{`
+      <style>{`
   .prgi-header {
     background: linear-gradient(to right, #385d81, #2f6fb3);
     color: white;
@@ -178,7 +178,7 @@ export default function RegisterTitle() {
           {/* SUBMIT */}
           <div className="text-center mt-4">
             <button type="submit" className="btn btn-prgi">
-               Submit Registration
+              Submit Registration
             </button>
           </div>
 
@@ -202,7 +202,7 @@ function Input({ label, name, value, onChange }) {
         className="form-control"
         required
       />
-      
+
     </div>
   );
 }

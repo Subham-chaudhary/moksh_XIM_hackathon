@@ -37,8 +37,8 @@ def saveData(data):
             f.write(','.join(row) + '\n')
 
 for page in range(0, 89):  
-    paginated_url = f"{cancelled_url}{page}"
-    sleep(1)  
+    paginated_url = f"{defunct_url}{page}"
+    sleep(0.3)  
     response = getData(paginated_url)
     if response.status_code == 200:
         data = parseData(response)

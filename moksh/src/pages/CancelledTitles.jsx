@@ -1,37 +1,45 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "./footer";
+import Footer from "../extra/footer";
+import { useEffect } from "react";
 export default function CancelledTitles() {
   const [form, setForm] = useState({
     title: "",
     regNo: "",
     records: 10,
   });
+  const [data, setData] = useState([]);
 
-  const data = [
-    {
-      id: 1,
-      title: "A I LIONS NEWS",
-      regNo: "107593",
-      language: "English",
-      periodicity: "Monthly",
-      state: "Delhi",
-      district: "New Delhi",
-      owner: "M.G. AGRAWAL",
-      publisher: "M.G. AGRAWAL",
-    },
-    {
-      id: 2,
-      title: "A A E I MAGAZINE",
-      regNo: "5062",
-      language: "English",
-      periodicity: "Monthly",
-      state: "West Bengal",
-      district: "Kolkata",
-      owner: "AUTOMOBILE ASSOCIATION OF BENGAL",
-      publisher: "ABANI KANTA BHATTACHARJEE",
-    },
-  ];
+  useEffect(() => {
+    fetch("http://127.0.0.1:5000/cancelled?page=1&limit=10")
+      .then(response => response.json())
+      .then(data => setData(data));
+  }, []);
+    console.log(data.entries());
+  // const data = [
+  //   {
+  //     id: 1,
+  //     title: "A I LIONS NEWS",
+  //     regNo: "107593",
+  //     language: "English",
+  //     periodicity: "Monthly",
+  //     state: "Delhi",
+  //     district: "New Delhi",
+  //     owner: "M.G. AGRAWAL",
+  //     publisher: "M.G. AGRAWAL",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "A A E I MAGAZINE",
+  //     regNo: "5062",
+  //     language: "English",
+  //     periodicity: "Monthly",
+  //     state: "West Bengal",
+  //     district: "Kolkata",
+  //     owner: "AUTOMOBILE ASSOCIATION OF BENGAL",
+  //     publisher: "ABANI KANTA BHATTACHARJEE",
+  //   },
+  // ];
 
   return (
     <div className="bg-light min-vh-100">
@@ -238,10 +246,10 @@ export default function CancelledTitles() {
 
           </table>
         </div>
-        
+
 
       </div>
-      
+
       <Footer />
     </div>
   );

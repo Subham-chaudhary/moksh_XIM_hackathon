@@ -28,8 +28,10 @@ def convert_to_ipa(title, titles_list, threshold=0.75):
 
     for candidate in titles_list:
         cand_words = ipa_words(candidate)
+        print(candidate)
 
         for m in main_words:
+            print(f"  Main word: {m}")
             for c in cand_words:
                 score = similarity(m, c)
                 if score >= threshold:
@@ -39,8 +41,8 @@ def convert_to_ipa(title, titles_list, threshold=0.75):
 
 
 if __name__ == "__main__":
-    title = "flower"
-    titles_list = ["flour", "flower with", "floor", "flow", "flowr"]
+    title = "shubham"
+    titles_list = ["subham", "shubhu", "shubhas", "shubh"]
 
     results = convert_to_ipa(title, titles_list)
     print(results)
