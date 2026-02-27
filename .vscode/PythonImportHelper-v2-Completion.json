@@ -44,12 +44,47 @@
         "documentation": {}
     },
     {
+        "label": "httpx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "httpx",
+        "description": "httpx",
+        "detail": "httpx",
+        "documentation": {}
+    },
+    {
         "label": "sqlite3",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "sqlite3",
         "description": "sqlite3",
         "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "psycopg2,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "psycopg2.",
+        "description": "psycopg2.",
+        "detail": "psycopg2.",
+        "documentation": {}
+    },
+    {
+        "label": "embed_llama",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "embed_llama",
+        "description": "embed_llama",
+        "detail": "embed_llama",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -86,12 +121,93 @@
         "documentation": {}
     },
     {
-        "label": "httpx",
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "model.embed_llama",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "httpx",
-        "description": "httpx",
-        "detail": "httpx",
+        "importPath": "model.embed_llama",
+        "description": "model.embed_llama",
+        "detail": "model.embed_llama",
+        "documentation": {}
+    },
+    {
+        "label": "phoneba",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "phoneba",
+        "description": "phoneba",
+        "detail": "phoneba",
+        "documentation": {}
+    },
+    {
+        "label": "registered",
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "isExtraImport": true,
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "phonemize",
+        "importPath": "phonemizer",
+        "description": "phonemizer",
+        "isExtraImport": true,
+        "detail": "phonemizer",
+        "documentation": {}
+    },
+    {
+        "label": "SequenceMatcher",
+        "importPath": "difflib",
+        "description": "difflib",
+        "isExtraImport": true,
+        "detail": "difflib",
         "documentation": {}
     },
     {
@@ -192,6 +308,15 @@
         "documentation": {}
     },
     {
+        "label": "embed",
+        "kind": 2,
+        "importPath": "moksh-backend.model.embed_llama",
+        "description": "moksh-backend.model.embed_llama",
+        "peekOfCode": "def embed(prompt):\n    try:\n        response = httpx.post(\"http://localhost:11434/api/embed\", json={\"model\": \"embeddinggemma:latest\", \"input\": prompt}).json()\n        return response\n    except Exception as e:\n        print(f\"Error generating response: {e}\")\n        return \"Sorry, I couldn't generate a response at this time.\"\nif __name__ == \"__main__\":\n    prompt = \"What is the capital of France?\"\n    embedding = embed(prompt)",
+        "detail": "moksh-backend.model.embed_llama",
+        "documentation": {}
+    },
+    {
         "label": "DATABASE",
         "kind": 5,
         "importPath": "moksh-backend.model.populate_db",
@@ -230,28 +355,289 @@
     {
         "label": "conn_psql",
         "kind": 5,
-        "importPath": "moksh-backend.model.populate_psql",
-        "description": "moksh-backend.model.populate_psql",
-        "peekOfCode": "conn_psql = psycopg2.connect(\n    host=\"ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech\",\n    database=\"neondb\",\n    user=\"neondb_owner\",\n    password=\"npg_wEMTpa4n6xKr\"\n)\n# conn_sqlite = sqlite3.connect('database2.db')\n# conn_sqlite.row_factory = sqlite3.Row\ncur_psql = conn_psql.cursor()\n# cur_psql2 = conn_psql.cursor()",
-        "detail": "moksh-backend.model.populate_psql",
+        "importPath": "moksh-backend.model.populate_sql",
+        "description": "moksh-backend.model.populate_sql",
+        "peekOfCode": "conn_psql = psycopg2.connect(\n    host=os.getenv('host', 'ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech'),\n    database=os.getenv('database', 'neondb'),\n    user=os.getenv('user', 'neondb_owner'),\n    password=os.getenv('password', 'npg_wEMTpa4n6xKr')\n)\nconn_sqlite = sqlite3.connect('database2.db')\nconn_sqlite.row_factory = sqlite3.Row\ncur_psql = conn_psql.cursor()\ncur_sqlite = conn_sqlite.cursor()",
+        "detail": "moksh-backend.model.populate_sql",
+        "documentation": {}
+    },
+    {
+        "label": "conn_sqlite",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_sql",
+        "description": "moksh-backend.model.populate_sql",
+        "peekOfCode": "conn_sqlite = sqlite3.connect('database2.db')\nconn_sqlite.row_factory = sqlite3.Row\ncur_psql = conn_psql.cursor()\ncur_sqlite = conn_sqlite.cursor()\n# cur_sqlite.execute(\n#     \"SELECT * FROM prgi_registered_titles;\"\n# )\n# cur_sqlite.execute(\n#     \"SELECT * FROM prgi_cancelled_titles;\"\n# )",
+        "detail": "moksh-backend.model.populate_sql",
+        "documentation": {}
+    },
+    {
+        "label": "conn_sqlite.row_factory",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_sql",
+        "description": "moksh-backend.model.populate_sql",
+        "peekOfCode": "conn_sqlite.row_factory = sqlite3.Row\ncur_psql = conn_psql.cursor()\ncur_sqlite = conn_sqlite.cursor()\n# cur_sqlite.execute(\n#     \"SELECT * FROM prgi_registered_titles;\"\n# )\n# cur_sqlite.execute(\n#     \"SELECT * FROM prgi_cancelled_titles;\"\n# )\nregistered_titles_rows = cur_sqlite.execute(\"SELECT * FROM prgi_defunct_titles\").fetchall()",
+        "detail": "moksh-backend.model.populate_sql",
         "documentation": {}
     },
     {
         "label": "cur_psql",
         "kind": 5,
-        "importPath": "moksh-backend.model.populate_psql",
-        "description": "moksh-backend.model.populate_psql",
-        "peekOfCode": "cur_psql = conn_psql.cursor()\n# cur_psql2 = conn_psql.cursor()\n# cur_sqlite = conn_sqlite.cursor()\ncur_psql.execute(\"SELECT * FROM prgi_semantic_titles\")\n# cur_psql2.execute(\"SELECT * FROM moksh_cancelled_titles\")\nregistered_titles_rows = cur_psql.fetchall()\n# cancelled_titles_rows = cur_psql2.fetchall()\nprint(\"Registered Titles:\", len(registered_titles_rows))\nfor row in registered_titles_rows:\n    print(row)",
-        "detail": "moksh-backend.model.populate_psql",
+        "importPath": "moksh-backend.model.populate_sql",
+        "description": "moksh-backend.model.populate_sql",
+        "peekOfCode": "cur_psql = conn_psql.cursor()\ncur_sqlite = conn_sqlite.cursor()\n# cur_sqlite.execute(\n#     \"SELECT * FROM prgi_registered_titles;\"\n# )\n# cur_sqlite.execute(\n#     \"SELECT * FROM prgi_cancelled_titles;\"\n# )\nregistered_titles_rows = cur_sqlite.execute(\"SELECT * FROM prgi_defunct_titles\").fetchall()\nall = len(registered_titles_rows)",
+        "detail": "moksh-backend.model.populate_sql",
+        "documentation": {}
+    },
+    {
+        "label": "cur_sqlite",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_sql",
+        "description": "moksh-backend.model.populate_sql",
+        "peekOfCode": "cur_sqlite = conn_sqlite.cursor()\n# cur_sqlite.execute(\n#     \"SELECT * FROM prgi_registered_titles;\"\n# )\n# cur_sqlite.execute(\n#     \"SELECT * FROM prgi_cancelled_titles;\"\n# )\nregistered_titles_rows = cur_sqlite.execute(\"SELECT * FROM prgi_defunct_titles\").fetchall()\nall = len(registered_titles_rows)\nprint(\"Registered Titles:\", len(registered_titles_rows))",
+        "detail": "moksh-backend.model.populate_sql",
         "documentation": {}
     },
     {
         "label": "registered_titles_rows",
         "kind": 5,
-        "importPath": "moksh-backend.model.populate_psql",
-        "description": "moksh-backend.model.populate_psql",
+        "importPath": "moksh-backend.model.populate_sql",
+        "description": "moksh-backend.model.populate_sql",
+        "peekOfCode": "registered_titles_rows = cur_sqlite.execute(\"SELECT * FROM prgi_defunct_titles\").fetchall()\nall = len(registered_titles_rows)\nprint(\"Registered Titles:\", len(registered_titles_rows))\ncount = 1\nfor row in registered_titles_rows:\n    # row = list(dictionary)\n    # embedding = ollama.embed(row[1])\n    # print(type(list(embedding)))\n    # print(list(embedding))\n    # break",
+        "detail": "moksh-backend.model.populate_sql",
+        "documentation": {}
+    },
+    {
+        "label": "all",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_sql",
+        "description": "moksh-backend.model.populate_sql",
+        "peekOfCode": "all = len(registered_titles_rows)\nprint(\"Registered Titles:\", len(registered_titles_rows))\ncount = 1\nfor row in registered_titles_rows:\n    # row = list(dictionary)\n    # embedding = ollama.embed(row[1])\n    # print(type(list(embedding)))\n    # print(list(embedding))\n    # break\n    # if row[3] is '':",
+        "detail": "moksh-backend.model.populate_sql",
+        "documentation": {}
+    },
+    {
+        "label": "count",
+        "kind": 5,
+        "importPath": "moksh-backend.model.populate_sql",
+        "description": "moksh-backend.model.populate_sql",
+        "peekOfCode": "count = 1\nfor row in registered_titles_rows:\n    # row = list(dictionary)\n    # embedding = ollama.embed(row[1])\n    # print(type(list(embedding)))\n    # print(list(embedding))\n    # break\n    # if row[3] is '':\n    #     continue\n    # cur_psql.execute(\"INSERT INTO prgi_semantic_titles (title, registration_Number,tag,registration_date, language, periodicity, publisher, owner, publication_state, publication_district, embedding) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)\", [row[1], row[2], 'registered',datetime.strptime(row[3], '%d-%m-%Y') , row[4], row[5], row[6], row[7], row[8], row[9], ollama.embed(row[1]).get('embeddings')[0]])",
+        "detail": "moksh-backend.model.populate_sql",
+        "documentation": {}
+    },
+    {
+        "label": "conn_psql",
+        "kind": 5,
+        "importPath": "moksh-backend.trash.abc",
+        "description": "moksh-backend.trash.abc",
+        "peekOfCode": "conn_psql = psycopg2.connect(\n    host=\"ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech\",\n    database=\"neondb\",\n    user=\"neondb_owner\",\n    password=\"npg_wEMTpa4n6xKr\"\n)\n# conn_sqlite = sqlite3.connect('database2.db')\n# conn_sqlite.row_factory = sqlite3.Row\ncur_psql = conn_psql.cursor()\n# cur_psql2 = conn_psql.cursor()",
+        "detail": "moksh-backend.trash.abc",
+        "documentation": {}
+    },
+    {
+        "label": "cur_psql",
+        "kind": 5,
+        "importPath": "moksh-backend.trash.abc",
+        "description": "moksh-backend.trash.abc",
+        "peekOfCode": "cur_psql = conn_psql.cursor()\n# cur_psql2 = conn_psql.cursor()\n# cur_sqlite = conn_sqlite.cursor()\ncur_psql.execute(\"SELECT * FROM prgi_semantic_titles\")\n# cur_psql2.execute(\"SELECT * FROM moksh_cancelled_titles\")\nregistered_titles_rows = cur_psql.fetchall()\n# cancelled_titles_rows = cur_psql2.fetchall()\nprint(\"Registered Titles:\", len(registered_titles_rows))\nfor row in registered_titles_rows:\n    print(row)",
+        "detail": "moksh-backend.trash.abc",
+        "documentation": {}
+    },
+    {
+        "label": "registered_titles_rows",
+        "kind": 5,
+        "importPath": "moksh-backend.trash.abc",
+        "description": "moksh-backend.trash.abc",
         "peekOfCode": "registered_titles_rows = cur_psql.fetchall()\n# cancelled_titles_rows = cur_psql2.fetchall()\nprint(\"Registered Titles:\", len(registered_titles_rows))\nfor row in registered_titles_rows:\n    print(row)\nprint(registered_titles_rows)\n# cur_sqlite.execute(\"CREATE TABLE IF NOT EXISTS prgi_registered_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Registration_Number TEXT NOT NULL,Registration_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, Language TEXT NOT NULL, Periodicity TEXT NOT NULL , Publisher TEXT NOT NULL, Owner TEXT NOT NULL, Publication_State TEXT NOT NULL, Publication_District TEXT NOT NULL)\")\n# cur_sqlite.executemany(\"INSERT INTO prgi_registered_titles (Title, Registration_Number, Language, Periodicity, Publisher, Owner, Publication_State, Publication_District) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)\", registered_titles_rows)\n# cur_sqlite.execute(\"CREATE TABLE IF NOT EXISTS prgi_cancelled_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Registration_Number TEXT NOT NULL,Language TEXT NOT NULL, Periodicity TEXT NOT NULL,State TEXT NOT NULL, District TEXT NOT NULL, Owner TEXT NOT NULL,Publisher TEXT NOT NULL)\")\n# cur_sqlite.executemany(\"INSERT INTO prgi_cancelled_titles (Title, Registration_Number, Language, Periodicity, State, District, Owner, Publisher) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)\", cancelled_titles_rows)",
-        "detail": "moksh-backend.model.populate_psql",
+        "detail": "moksh-backend.trash.abc",
+        "documentation": {}
+    },
+    {
+        "label": "get_db_connection",
+        "kind": 2,
+        "importPath": "moksh-backend.trash.app",
+        "description": "moksh-backend.trash.app",
+        "peekOfCode": "def get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\ndef get_psql_connection():\n    conn = psycopg2.connect(\n        host=os.getenv('host', 'ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech'),\n        database=os.getenv('database', 'neondb'),\n        user=os.getenv('user', 'neondb_owner'),\n        password=os.getenv('password', 'npg_wEMTpa4n6xKr')",
+        "detail": "moksh-backend.trash.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_psql_connection",
+        "kind": 2,
+        "importPath": "moksh-backend.trash.app",
+        "description": "moksh-backend.trash.app",
+        "peekOfCode": "def get_psql_connection():\n    conn = psycopg2.connect(\n        host=os.getenv('host', 'ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech'),\n        database=os.getenv('database', 'neondb'),\n        user=os.getenv('user', 'neondb_owner'),\n        password=os.getenv('password', 'npg_wEMTpa4n6xKr')\n    )\n    return conn\n@app.route('/registered', methods=['GET'])\ndef registered():",
+        "detail": "moksh-backend.trash.app",
+        "documentation": {}
+    },
+    {
+        "label": "registered",
+        "kind": 2,
+        "importPath": "moksh-backend.trash.app",
+        "description": "moksh-backend.trash.app",
+        "peekOfCode": "def registered():\n    conn = get_db_connection()\n    cur = conn.cursor()\n    try:\n        limit = int(request.args.get(\"limit\", 10))\n    except:\n        limit = 10\n    limit = max(1, min(limit, 100))\n    max_rows = cur.execute(\"SELECT COUNT(*) FROM prgi_registered_titles\").fetchone()[0]\n    max_pages = (max_rows  limit - 1) // limit",
+        "detail": "moksh-backend.trash.app",
+        "documentation": {}
+    },
+    {
+        "label": "cancelled",
+        "kind": 2,
+        "importPath": "moksh-backend.trash.app",
+        "description": "moksh-backend.trash.app",
+        "peekOfCode": "def cancelled():\n    conn = get_db_connection()\n    cur = conn.cursor()\n    try:\n        limit = int(request.args.get(\"limit\", 10))\n    except:\n        limit = 10\n    limit = max(1, min(limit, 100))\n    max_rows = cur.execute(\"SELECT COUNT(*) FROM prgi_cancelled_titles\").fetchone()[0]\n    max_pages = (max_rows  limit - 1) // limit",
+        "detail": "moksh-backend.trash.app",
+        "documentation": {}
+    },
+    {
+        "label": "defunct",
+        "kind": 2,
+        "importPath": "moksh-backend.trash.app",
+        "description": "moksh-backend.trash.app",
+        "peekOfCode": "def defunct():\n    conn = get_db_connection()\n    cur = conn.cursor()\n    try:\n        limit = int(request.args.get(\"limit\", 10))\n    except:\n        limit = 10\n    limit = max(1, min(limit, 100))\n    max_rows = cur.execute(\"SELECT COUNT(*) FROM prgi_defunct_titles\").fetchone()[0]\n    max_pages = (max_rows + limit - 1) // limit",
+        "detail": "moksh-backend.trash.app",
+        "documentation": {}
+    },
+    {
+        "label": "fuzzy_search",
+        "kind": 2,
+        "importPath": "moksh-backend.trash.app",
+        "description": "moksh-backend.trash.app",
+        "peekOfCode": "def fuzzy_search(title):\n    conn = get_psql_connection()\n    cur = conn.cursor()\n    # cur.execute(\"SELECT title,registration_number, similarity(title, %s) AS score FROM prgi_semantic_titles WHERE title %s ORDER BY score DESC LIMIT 10;\", (title, title))\n    query = f\"SELECT title, registration_number, similarity(title, '{title}') AS score FROM prgi_semantic_titles where title % '{title}' ORDER BY score DESC limit 10;\"\n    cur.execute(query)\n    results = cur.fetchall()\n    cur.close()\n    # for result in results:\n    #     print(result)",
+        "detail": "moksh-backend.trash.app",
+        "documentation": {}
+    },
+    {
+        "label": "schematic_search",
+        "kind": 2,
+        "importPath": "moksh-backend.trash.app",
+        "description": "moksh-backend.trash.app",
+        "peekOfCode": "def schematic_search(title):\n    query_vector = ollama.embed(title).get(\"embeddings\")\n    # print(query_vector)\n    conn = get_psql_connection()\n    cur = conn.cursor()\n    query = f\"SELECT title, registration_number, 1 - (embedding <=> '{query_vector[0]}') AS similarity FROM prgi_semantic_titles ORDER BY embedding <=> '{query_vector[0]}' ASC LIMIT 10;\"\n    cur.execute(query)\n    results = cur.fetchall()\n    cur.close()\n    # for result in results:",
+        "detail": "moksh-backend.trash.app",
+        "documentation": {}
+    },
+    {
+        "label": "phoneatic_search",
+        "kind": 2,
+        "importPath": "moksh-backend.trash.app",
+        "description": "moksh-backend.trash.app",
+        "peekOfCode": "def phoneatic_search(title, titles_list):\n    results = ph.convert_to_ipa(title, titles_list)\n    return results\n@app.route('/registertitle', methods=['POST'])\ndef register_title():\nif __name__ == '__main__':\n    # app.run(debug=True, host='0.0.0.0', port=5000)\n    # fuzzy_search(\"bharot\")\n    # schematic_search(\"Child\")",
+        "detail": "moksh-backend.trash.app",
+        "documentation": {}
+    },
+    {
+        "label": "register_title",
+        "kind": 2,
+        "importPath": "moksh-backend.trash.app",
+        "description": "moksh-backend.trash.app",
+        "peekOfCode": "def register_title():\nif __name__ == '__main__':\n    # app.run(debug=True, host='0.0.0.0', port=5000)\n    # fuzzy_search(\"bharot\")\n    # schematic_search(\"Child\")",
+        "detail": "moksh-backend.trash.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "moksh-backend.trash.app",
+        "description": "moksh-backend.trash.app",
+        "peekOfCode": "app = Flask(__name__)\nDATABASE = 'model/database2.db'\ndef get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\ndef get_psql_connection():\n    conn = psycopg2.connect(\n        host=os.getenv('host', 'ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech'),\n        database=os.getenv('database', 'neondb'),",
+        "detail": "moksh-backend.trash.app",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE",
+        "kind": 5,
+        "importPath": "moksh-backend.trash.app",
+        "description": "moksh-backend.trash.app",
+        "peekOfCode": "DATABASE = 'model/database2.db'\ndef get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\ndef get_psql_connection():\n    conn = psycopg2.connect(\n        host=os.getenv('host', 'ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech'),\n        database=os.getenv('database', 'neondb'),\n        user=os.getenv('user', 'neondb_owner'),",
+        "detail": "moksh-backend.trash.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_db_connection",
+        "kind": 2,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "def get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\ndef get_psql_connection():\n    conn = psycopg2.connect(\n        host=os.getenv('host', 'ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech'),\n        database=os.getenv('database', 'neondb'),\n        user=os.getenv('user', 'neondb_owner'),\n        password=os.getenv('password', 'npg_wEMTpa4n6xKr')",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "get_psql_connection",
+        "kind": 2,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "def get_psql_connection():\n    conn = psycopg2.connect(\n        host=os.getenv('host', 'ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech'),\n        database=os.getenv('database', 'neondb'),\n        user=os.getenv('user', 'neondb_owner'),\n        password=os.getenv('password', 'npg_wEMTpa4n6xKr')\n    )\n    return conn\n@app.route('/registered', methods=['GET'])\ndef registered():",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "registered",
+        "kind": 2,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "def registered():\n    conn = get_db_connection()\n    cur = conn.cursor()\n    try:\n        limit = int(request.args.get(\"limit\", 10))\n    except:\n        limit = 10\n    limit = max(1, min(limit, 100))\n    max_rows = cur.execute(\"SELECT COUNT(*) FROM prgi_registered_titles\").fetchone()[0]\n    max_pages = (max_rows + limit - 1) // limit",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "cancelled",
+        "kind": 2,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "def cancelled():\n    conn = get_db_connection()\n    cur = conn.cursor()\n    try:\n        limit = int(request.args.get(\"limit\", 10))\n    except:\n        limit = 10\n    limit = max(1, min(limit, 100))\n    max_rows = cur.execute(\"SELECT COUNT(*) FROM prgi_cancelled_titles\").fetchone()[0]\n    max_pages = (max_rows + limit - 1) // limit",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "defunct",
+        "kind": 2,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "def defunct():\n    conn = get_db_connection()\n    cur = conn.cursor()\n    try:\n        limit = int(request.args.get(\"limit\", 10))\n    except:\n        limit = 10\n    limit = max(1, min(limit, 100))\n    max_rows = cur.execute(\"SELECT COUNT(*) FROM prgi_defunct_titles\").fetchone()[0]\n    max_pages = (max_rows + limit - 1) // limit",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "fuzzy_search",
+        "kind": 2,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "def fuzzy_search(title):\n    conn = get_psql_connection()\n    cur = conn.cursor()\n    # cur.execute(\"SELECT title,registration_number, similarity(title, %s) AS score FROM prgi_semantic_titles WHERE title %s ORDER BY score DESC LIMIT 10;\", (title, title))\n    query = f\"SELECT title, registration_number, similarity(title, '{title}') AS score FROM prgi_semantic_titles where title % '{title}' ORDER BY score DESC limit 10;\"\n    cur.execute(query)\n    results = cur.fetchall()\n    cur.close()\n    # for result in results:\n    #     print(result)",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "schematic_search",
+        "kind": 2,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "def schematic_search(title):\n    query_vector = ollama.embed(title).get(\"embeddings\")\n    # print(query_vector)\n    conn = get_psql_connection()\n    cur = conn.cursor()\n    query = f\"SELECT title, registration_number, 1 - (embedding <=> '{query_vector[0]}') AS similarity FROM prgi_semantic_titles ORDER BY embedding <=> '{query_vector[0]}' ASC LIMIT 10;\"\n    cur.execute(query)\n    results = cur.fetchall()\n    cur.close()\n    # for result in results:",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "phoneatic_search",
+        "kind": 2,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "def phoneatic_search(title, titles_list):\n    results = ph.convert_to_ipa(title, titles_list)\n    return results\n# @app.route('/registertitle', methods=['POST'])\n# def register_title():\nif __name__ == '__main__':\n    # app.run(debug=True, host='0.0.0.0', port=5000)\n    print(fuzzy_search(\"namuskar\"))\n    print(schematic_search(\"Child\"))",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "app = Flask(__name__)\nDATABASE = 'model/database2.db'\ndef get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\ndef get_psql_connection():\n    conn = psycopg2.connect(\n        host=os.getenv('host', 'ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech'),\n        database=os.getenv('database', 'neondb'),",
+        "detail": "moksh-backend.app",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE",
+        "kind": 5,
+        "importPath": "moksh-backend.app",
+        "description": "moksh-backend.app",
+        "peekOfCode": "DATABASE = 'model/database2.db'\ndef get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\ndef get_psql_connection():\n    conn = psycopg2.connect(\n        host=os.getenv('host', 'ep-old-night-a15sm9m8-pooler.ap-southeast-1.aws.neon.tech'),\n        database=os.getenv('database', 'neondb'),\n        user=os.getenv('user', 'neondb_owner'),",
+        "detail": "moksh-backend.app",
         "documentation": {}
     },
     {
@@ -306,6 +692,42 @@
         "description": "moksh-backend.model_ctrl",
         "peekOfCode": "DATABASE = 'model/database2.db'\ndef get_db_connection():\n    conn = sqlite3.connect(DATABASE)\n    conn.row_factory = sqlite3.Row\n    return conn\n@app.route('/init_db', methods=['GET'])\ndef init_db():\n    conn = get_db_connection()\n    # Registered titles dataset\n    conn.execute('CREATE TABLE IF NOT EXISTS prgi_registered_titles (id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Registration_Number TEXT NOT NULL,Registration_Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, Language TEXT NOT NULL, Periodicity TEXT NOT NULL , Publisher TEXT NOT NULL, Owner TEXT NOT NULL, Publication_State TEXT NOT NULL, Publication_District TEXT NOT NULL)')",
         "detail": "moksh-backend.model_ctrl",
+        "documentation": {}
+    },
+    {
+        "label": "ipa_words",
+        "kind": 2,
+        "importPath": "moksh-backend.phoneba",
+        "description": "moksh-backend.phoneba",
+        "peekOfCode": "def ipa_words(text):\n    ipa = phonemize(\n        text,\n        backend=\"espeak\",\n        language=\"en-us\",\n        strip=True,\n        with_stress=False,\n        preserve_punctuation=False\n    )\n    # remove <=3 letter words",
+        "detail": "moksh-backend.phoneba",
+        "documentation": {}
+    },
+    {
+        "label": "similarity",
+        "kind": 2,
+        "importPath": "moksh-backend.phoneba",
+        "description": "moksh-backend.phoneba",
+        "peekOfCode": "def similarity(a, b):\n    return SequenceMatcher(None, a, b).ratio()\ndef convert_to_ipa(title, titles_list, threshold=0.75):\n    main_words = ipa_words(title)\n    matches = []\n    for candidate in titles_list:\n        cand_words = ipa_words(candidate)\n        for m in main_words:\n            for c in cand_words:\n                score = similarity(m, c)",
+        "detail": "moksh-backend.phoneba",
+        "documentation": {}
+    },
+    {
+        "label": "convert_to_ipa",
+        "kind": 2,
+        "importPath": "moksh-backend.phoneba",
+        "description": "moksh-backend.phoneba",
+        "peekOfCode": "def convert_to_ipa(title, titles_list, threshold=0.75):\n    main_words = ipa_words(title)\n    matches = []\n    for candidate in titles_list:\n        cand_words = ipa_words(candidate)\n        for m in main_words:\n            for c in cand_words:\n                score = similarity(m, c)\n                if score >= threshold:\n                    matches.append((candidate, m, c, round(score, 2)))",
+        "detail": "moksh-backend.phoneba",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PHONEMIZER_ESPEAK_LIBRARY\"]",
+        "kind": 5,
+        "importPath": "moksh-backend.phoneba",
+        "description": "moksh-backend.phoneba",
+        "peekOfCode": "os.environ[\"PHONEMIZER_ESPEAK_LIBRARY\"] = r\"C:\\Program Files\\eSpeak NG\\libespeak-ng.dll\"\ndef ipa_words(text):\n    ipa = phonemize(\n        text,\n        backend=\"espeak\",\n        language=\"en-us\",\n        strip=True,\n        with_stress=False,\n        preserve_punctuation=False\n    )",
+        "detail": "moksh-backend.phoneba",
         "documentation": {}
     },
     {
