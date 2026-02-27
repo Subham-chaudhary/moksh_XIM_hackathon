@@ -2,3 +2,8 @@
 *.csv
 *.db
 .env
+__pycache__/
+instance/
+migrations/
+trash/
+*.html
